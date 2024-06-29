@@ -1,12 +1,16 @@
 package com.eazybytes.loans.controller;
 
 import com.eazybytes.loans.constants.LoansConstants;
+import com.eazybytes.loans.dto.LoansContactDto;
 import com.eazybytes.loans.dto.LoansDto;
 import com.eazybytes.loans.dto.ResponseDto;
 import com.eazybytes.loans.service.ILoansService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +20,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/loans", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
+@RequiredArgsConstructor
 public class LoansController {
 
-    private ILoansService iLoansService;
+    private final ILoansService iLoansService;
+    private final Environment environment;
+    private final LoansContactDto loansContactDto;
+
+    @Value("${build.version}")
+    public String buildVersion;
 
     @GetMapping
     public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam
@@ -69,5 +78,17 @@ public class LoansController {
                     .body(new ResponseDto(LoansConstants.STATUS_417, LoansConstants.MESSAGE_417_DELETE));
         }
     }
+
+    @GetMapping("/buildVersion")
+    public String getBuildVersion(){
+        String env = environment.getProperty("build.env");
+        return buildVersion + " " + env;
+    }
+
+    @GetMapping("/loansContactInfo")
+    public LoansContactDto getLoansContactInfo(){
+        return loansContactDto;
+    }
+
 
 }
