@@ -1,0 +1,12 @@
+build:
+  version: "1.0"
+  env: "dev"
+
+accounts:
+  message: "Welcome to accounts ms dev"
+  contactDetails:
+    name: "Elshan"
+    email: "elshan@gmail.com"
+  phoneNumbers:
+   - 55555555
+   - 11111111
