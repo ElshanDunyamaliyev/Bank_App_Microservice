@@ -1,0 +1,12 @@
+build:
+  version: "3.0"
+  env: "qa"
+
+cards:
+  message: "Welcome to cards ms qa"
+  contactDetails:
+    name: "Elshan"
+    email: "elshan@gmail.com"
+  phoneNumbers:
+    - 55555555
+    - 11111111

@@ -1,0 +1,12 @@
+build:
+  version: "2.0"
+  env: "prod"
+
+cards:
+  message: "Welcome to cards ms prod"
+  contactDetails:
+    name: "Elshan"
+    email: "elshan@gmail.com"
+  phoneNumbers:
+    - 55555555
+    - 11111111

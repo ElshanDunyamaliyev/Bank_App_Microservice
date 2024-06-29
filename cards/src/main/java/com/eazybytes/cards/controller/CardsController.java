@@ -1,12 +1,16 @@
 package com.eazybytes.cards.controller;
 
 import com.eazybytes.cards.constants.CardsConstants;
+import com.eazybytes.cards.dto.CardsContactDto;
 import com.eazybytes.cards.dto.CardsDto;
 import com.eazybytes.cards.dto.ResponseDto;
 import com.eazybytes.cards.service.ICardsService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +20,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/cards", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
+@RequiredArgsConstructor
 public class CardsController {
 
     private ICardsService iCardsService;
+    private final Environment environment;
+    private final CardsContactDto cardsContactDto;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @GetMapping
     public ResponseEntity<CardsDto> fetchCardDetails(@RequestParam
@@ -68,6 +77,17 @@ public class CardsController {
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDto(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417_DELETE));
         }
+    }
+
+    @GetMapping("/buildVersion")
+    public String getBuildVersion(){
+        String env = environment.getProperty("build.env");
+        return buildVersion + " " + env;
+    }
+
+    @GetMapping("/cardsContactInfo")
+    public CardsContactDto getAccountsContactInfo(){
+        return cardsContactDto;
     }
 
 }
