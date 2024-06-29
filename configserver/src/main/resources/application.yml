@@ -2,13 +2,22 @@ spring:
   application:
     name: "configserver"
   profiles:
-    active: native
+#    active: native
+    active: git
   cloud:
     config:
       server:
-        native:
+        git:
+          uri: "https://github.com/ElshanDunyamaliyev/Configuration-for-Config-Server.git"
+          timeout: 5
+          default-label: master
+          clone-on-start: true
+          force-pull: true
+#    config:
+#      server:
+#        native:
 #          search-locations: "classpath:/config"
-          search-locations: "file:///home//elshan//config"
+#          search-locations: "file:///home//elshan//config"
 
 server:
   port: 8071
