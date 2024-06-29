@@ -14,13 +14,19 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+      - "application_qa.yml"
+      - "application_prod.yml"
+  profiles:
+    active: "prod"
 
 build:
   version: "1.0"
-  env: "test"
+  env: "dev"
 
 accounts:
-  message: "Welcome to accounts ms"
+  message: "Welcome to accounts ms dev"
   contactDetails:
     name: "Elshan"
     email: "elshan@gmail.com"
