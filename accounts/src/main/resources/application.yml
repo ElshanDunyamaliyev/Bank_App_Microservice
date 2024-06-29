@@ -14,3 +14,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+build:
+  version: "1.0"
+  env: "test"
+
+accounts:
+  message: "Welcome to accounts ms"
+  contactDetails:
+    name: "Elshan"
+    email: "elshan@gmail.com"
+  phoneNumbers:
+   - 55555555
+   - 11111111

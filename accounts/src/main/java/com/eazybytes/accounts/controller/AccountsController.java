@@ -1,12 +1,18 @@
 package com.eazybytes.accounts.controller;
 
 import com.eazybytes.accounts.constants.AccountsConstants;
+import com.eazybytes.accounts.dto.AccountsContactInfoDto;
 import com.eazybytes.accounts.dto.CustomerDto;
 import com.eazybytes.accounts.dto.ResponseDto;
 import com.eazybytes.accounts.service.IAccountsService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +23,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Validated
 public class AccountsController {
 
-    private IAccountsService iAccountsService;
+    private final IAccountsService iAccountsService;
+    private final Environment environment;
+    private final AccountsContactInfoDto accountsContactInfoDto;
+
+    @Value("${build.version}")
+    private String buildVersion;
+
 
     @GetMapping
     public ResponseEntity<CustomerDto> fetchAccountDetails(@RequestParam
@@ -70,5 +82,15 @@ public class AccountsController {
         }
     }
 
+    @GetMapping("/buildVersion")
+    public String getBuildVersion(){
+        String env = environment.getProperty("build.env");
+        return buildVersion + " " + env;
+    }
+
+    @GetMapping("/accountsContactInfo")
+    public AccountsContactInfoDto getAccountsContactInfo(){
+        return accountsContactInfoDto;
+    }
 
 }
