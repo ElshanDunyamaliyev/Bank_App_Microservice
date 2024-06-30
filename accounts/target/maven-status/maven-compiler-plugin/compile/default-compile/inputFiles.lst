@@ -4,6 +4,7 @@
 /home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/entity/Accounts.java
 /home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/dto/ErrorResponseDto.java
 /home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/service/impl/AccountsServiceImpl.java
+/home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/dto/AccountsContactInfoDto.java
 /home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/constants/AccountsConstants.java
 /home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/entity/BaseEntity.java
 /home/elshan/Desktop/java_projects/microservices/accounts/src/main/java/com/eazybytes/accounts/entity/Customer.java
