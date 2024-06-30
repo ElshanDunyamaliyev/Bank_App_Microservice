@@ -13,6 +13,11 @@ spring:
           default-label: master
           clone-on-start: true
           force-pull: true
+  rabbitmq:
+    host: "localhost"
+    port: "5672"
+    username: "guest"
+    password: "guest"
 #    config:
 #      server:
 #        native:
@@ -21,3 +26,9 @@ spring:
 
 server:
   port: 8071
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
