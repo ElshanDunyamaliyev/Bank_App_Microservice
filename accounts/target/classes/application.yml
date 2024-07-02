@@ -2,19 +2,15 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
+    url: jdbc:mysql://localhost:3306/accountsdb
+    username: root
+    password: root
+  sql:
+    init:
+      mode: always
   application:
     name: "accounts"
-  h2:
-    console:
-      enabled: true
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
     show-sql: true
   profiles:
     active: "prod"
@@ -32,4 +28,7 @@ management:
       exposure:
         include: "*"
 
-
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8070/
