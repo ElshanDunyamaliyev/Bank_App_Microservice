@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CardsController {
 
-    private ICardsService iCardsService;
+    private final ICardsService iCardsService;
     private final Environment environment;
     private final CardsContactDto cardsContactDto;
 
