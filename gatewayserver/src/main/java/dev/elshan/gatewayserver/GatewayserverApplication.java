@@ -17,7 +17,8 @@ public class GatewayserverApplication {
 	public RouteLocator customRouteLocator(RouteLocatorBuilder routeLocatorBuilder) {
 		return routeLocatorBuilder.routes().
 				route(p -> p.path("/bank/accounts/**").
-						filters(f -> f.rewritePath("/bank/accounts/?(?<remaining>.*)","/${remaining}")).
+						filters(f -> f.rewritePath("/bank/accounts/?(?<remaining>.*)","/${remaining}").
+								circuitBreaker(c -> c.setName("accountsCircuitBreaker").setFallbackUri("forward:/contactSupport"))).
 						uri("lb://ACCOUNTS")).
 				route(p -> p.path("/bank/cards/**").
 						filters(f -> f.rewritePath("/bank/cards/?(?<remaining>.*)","/${remaining}")).
