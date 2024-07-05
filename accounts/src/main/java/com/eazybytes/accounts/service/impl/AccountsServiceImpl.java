@@ -53,8 +53,12 @@ public class AccountsServiceImpl  implements IAccountsService {
         );
         CustomerDetailsDto customerDetailsDto = CustomerMapper.mapToCustomerDetailsDto(customer, new CustomerDetailsDto());
         customerDetailsDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
-        customerDetailsDto.setCardsDto(cardsFeignClient.fetchCard(mobileNumber));
-        customerDetailsDto.setLoansDto(loansFeignClient.fetchLoan(mobileNumber));
+        if(cardsFeignClient != null) {
+            customerDetailsDto.setCardsDto(cardsFeignClient.fetchCard(mobileNumber));
+        }
+        if(loansFeignClient != null) {
+            customerDetailsDto.setLoansDto(loansFeignClient.fetchLoan(mobileNumber));
+        }
         return customerDetailsDto;
     }
 

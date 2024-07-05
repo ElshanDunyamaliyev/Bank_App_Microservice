@@ -1,13 +1,13 @@
 package com.eazybytes.accounts.service.client;
 
 import com.eazybytes.accounts.dto.CardsDto;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("cards")
+@FeignClient(name = "cards",fallback = CardsFallback.class)
+@Primary
 public interface CardsFeignClient {
 
     @GetMapping("/cards")

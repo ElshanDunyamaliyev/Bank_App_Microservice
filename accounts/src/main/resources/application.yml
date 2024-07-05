@@ -21,6 +21,10 @@ spring:
     port: "5672"
     username: "guest"
     password: "guest"
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 
 management:
   endpoints:
@@ -51,3 +55,11 @@ info:
     name: "Accounts"
     description: "Accounts Microservice"
     version: "1.0.0"
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      sliding-window-size: 10
+      permitted-number-of-calls-in-half-open-state: 2
+      failure-rate-threshold: 50
+      wait-duration-in-open-state: 10000
